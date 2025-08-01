@@ -68,3 +68,15 @@ Our repo has found the following repos as helpful:
 1. [TritonBench](https://github.com/thunlp/TritonBench/tree/main)
 2. [ROCm AITER](https://github.com/ROCm/aiter)
 3. [ROCm Triton](https://github.com/ROCm/triton)
+
+
+#### Citation
+If you find this work useful in your research or applications, please consider citing:
+```bibtex
+@article{your_citation_key,
+  title={Your Paper Title},
+  author={Your Name and Coauthors},
+  journal={arXiv preprint arXiv:xxxx.xxxxx},
+  year={2025}
+}
+```
