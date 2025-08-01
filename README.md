@@ -1,3 +1,5 @@
+Technical report [![arXiv](https://img.shields.io/badge/arXiv-2507.23194-b31b1b.svg)](https://arxiv.org/abs/2507.23194)
+
 # Improved TritonBench evaluation framework
 
 ### Dependancy installation
