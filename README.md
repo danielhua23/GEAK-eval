@@ -72,11 +72,15 @@ Our repo has found the following repos as helpful:
 
 #### Citation
 If you find this work useful in your research or applications, please consider citing:
+
 ```bibtex
-@article{your_citation_key,
-  title={Your Paper Title},
-  author={Your Name and Coauthors},
-  journal={arXiv preprint arXiv:xxxx.xxxxx},
-  year={2025}
+@misc{wang2025geakintroducingtritonkernel,
+      title={Geak: Introducing Triton Kernel AI Agent & Evaluation Benchmarks}, 
+      author={Jianghui Wang and Vinay Joshi and Saptarshi Majumder and Xu Chao and Bin Ding and Ziqiong Liu and Pratik Prabhanjan Brahma and Dong Li and Zicheng Liu and Emad Barsoum},
+      year={2025},
+      eprint={2507.23194},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2507.23194}, 
 }
 ```
