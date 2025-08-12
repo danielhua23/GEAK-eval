@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='geak-eval',  # Replace with your module/package name
-    version='0.1.0',
+    version='0.1.1',
     author='Vinay Joshi',
     author_email='vinajosh@amd.com',
     description='An evaluation framework for Triton kernels',
