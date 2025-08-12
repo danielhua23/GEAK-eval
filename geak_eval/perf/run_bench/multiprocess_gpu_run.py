@@ -12,7 +12,7 @@ def parser():
     args = parser.parse_args()
     return args
 
-gpu_count = 8
+gpu_count = 1
 
 # scripts = sorted([f for f in os.listdir(script_dir) if f.endswith(".py")])
 # scripts = [os.path.join(script_dir, script) for script in scripts]
