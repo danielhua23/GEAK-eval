@@ -27,6 +27,7 @@ def get_parser():
 
     ## main and default parser
     main_parser = subparsers.add_parser('eval', help='Run the evaluation on a folder or a file')
+    main_parser.add_argument('--team', '-t', type=str, required=True, help='pls input your team name')
     main_parser.add_argument('--folder_or_file', '-f', type=str, required=True, help='Folder to check')
     main_parser.add_argument('--outfile', '-o', type=str, required=True, help='Output file to save results')
 
@@ -169,6 +170,35 @@ def eval(args):
         with open(out_file + f"_perf_{pass_num}.json", 'w') as out_f:
             json.dump(perf_data, out_f, indent=4)
 
+    #import pdb;pdb.set_trace()
+    LB_URL="https://daniehua-agent-leaderboard.hf.space"
+    print("INFO: Your passed kernels speedup are: ", perf_data["speed_up"])
+    print("INFO: Submitting results for team: ", args.team)
+    shell_code = r'''
+    LB_URL="https://daniehua-agent-leaderboard.hf.space"
+    echo "Performance metrics:"
+    echo "  speedup for kernels: ${PERF_LINE} times"
+    echo "  your total score is: ${PERF_LINE}"
+    echo "Submitting to leaderboard..."
+    curl -X POST $LB_URL/gradio_api/call/submit_results -s -H "Content-Type: application/json" -d "{
+        \"data\": [
+            \"$TEAM_NAME\",
+            $PERF_LINE
+        ]
+    }" | awk -F'"' '{ print $4}' | read EVENT_ID
+
+    sleep 2
+
+    echo "SUCCESS: Results submitted to leaderboard! 🤗 Check it out @ $LB_URL"
+    '''
+    import tempfile
+    import subprocess
+    import pathlib
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.sh', delete=False) as tf:
+        tf.write(shell_code)
+        tf.flush()
+        subprocess.run(['bash', tf.name], env=os.environ | {'TEAM_NAME': args.team ,'PERF_LINE': str(sum(perf_data["speed_up"]))})  
+        pathlib.Path(tf.name).unlink() 
     froot = os.path.join(args.folder_or_file.replace(EXT, ""), args.outfile)
     # Save the data across passes to a file
     with open(froot +  "_all_passes.json", 'w') as out_f:
